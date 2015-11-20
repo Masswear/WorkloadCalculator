@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Physical workload and work capacity across occupational groups</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Physical workload and work capacity across occupational groups">
+  <meta name="author" content="Masswear">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Physical workload and work capacity across occupational groups</h1>
+    <h2>Course Project for John's Hopkins Data Science Specialization</h2>
+    <p>Masswear<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Synopsis</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Serious injury or illness can lead to a significant loss of working hours and substantial health care costs</li>
+<li>Physical workload was found to be an independent risk factor for disability retirement </li>
+<li>Employers and insurance agencies may have to assess the work capacity of a person to adequately adjust the job profile</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>What the app does</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The <a href="https://masswear.shinyapps.io/workload_calculator">Physical Workload Calculator</a> uses various personal- and job-related factors for evaluating workload:</p>
+
+<ul>
+<li>Physical activity: the oxygen consumption of the body per kilogram per minute during any given activity (in metabolic equivalents, METs). One MET corresponds to 3.5 ml O<sub>2</sub>/kg/min.</li>
+<li>Occupational activity: the general intensity of an occupation</li>
+<li>Maximal oxygen consumption: the aerobic physical fitness of the individual</li>
+<li>working hours per day</li>
+<li>flextime (yes/no)</li>
+<li>age</li>
+</ul>
+
+<p>Each entry is recorded in a google spreadsheet</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>How the App works</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Workload is calculated using a linear regression equation that was derived from a sample of 303 healthy adults in Switzerland. Because the work has not been published yet, the equation cannot be shared publicly here.</p>
+
+<pre><code class="r">input &lt;- list(&quot;MPA&quot; = 30, &quot;HPA&quot; = 30, &quot;VHPA&quot; = 30, &quot;occupation&quot; = &quot;MI&quot;, &quot;WH&quot; = 8.5, &quot;FT&quot; = TRUE,
+              &quot;Age&quot; = 30, &quot;VO2max&quot; = 30)
+new_workload &lt;- calc_workload(input$MPA,
+                              input$HPA,
+                              input$occupation,
+                              input$WH,
+                              input$VHPA,
+                   as.numeric(input$FT),
+                              input$Age,
+                              input$VO2max)
+</code></pre>
+
+<p>Workload = 2.741 METs</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>How to use the App</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>In the left-hand sidebar panel, enter your data </li>
+<li>Click the &quot;calculate&quot; button</li>
+<li>The app automatically changes to the &quot;Calculate workload&quot; tab to show the workload</li>
+<li>Go to the &quot;Summary table&quot; tab to view the previous entries in the google sheet</li>
+</ol>
+
+<p><img src="assets/img/wl_calculator.jpg"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Synopsis'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='What the app does'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='How the App works'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='How to use the App'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
